@@ -33,6 +33,13 @@
   pointer-events: none;
 }
 
+.overlayTop {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+}
+
 /* ── Start Screen ── */
 
 .title {
@@ -45,15 +52,23 @@
     -1px -1px 0 #553300,
     1px -1px 0 #553300,
     -1px 1px 0 #553300;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   letter-spacing: 2px;
+}
+
+.coinDisplay {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #FFD54F;
+  margin-bottom: 8px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
 }
 
 .subtitle {
   font-family: 'Courier New', monospace;
   font-size: 0.85rem;
   color: #FFE082;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   text-shadow: 1px 1px 0 #553300;
 }
 
@@ -90,6 +105,7 @@
   opacity: 0.9;
   animation: blink 1.2s ease infinite;
   text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+  margin-bottom: 16px;
 }
 
 @keyframes blink {
@@ -97,18 +113,58 @@
   50% { opacity: 0.3; }
 }
 
+/* ── Bottom Buttons (idle screen) ── */
+
+.bottomBtns {
+  display: flex;
+  gap: 16px;
+  pointer-events: auto;
+}
+
+.iconBtn {
+  width: 44px;
+  height: 44px;
+  font-size: 1.3rem;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease;
+}
+
+.iconBtn:active {
+  transform: scale(0.9);
+}
+
+.bgmToggleSmall {
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ── Game Over Screen ── */
 
 .gameOverPanel {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   border: 3px solid #FFC107;
   border-radius: 16px;
-  padding: 28px 36px;
+  padding: 24px 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   animation: popIn 0.3s ease both;
+  min-width: 240px;
 }
 
 @keyframes popIn {
@@ -122,7 +178,7 @@
   font-weight: 900;
   color: #FF5722;
   text-shadow: 2px 2px 0 #000;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .scoreRow {
@@ -157,15 +213,30 @@
   animation: blink 0.6s ease infinite;
 }
 
+.coinReward {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: #FFD54F;
+}
+
+.coinTotal {
+  font-size: 0.7rem;
+  color: #aaa;
+}
+
 .divider {
   width: 100%;
   height: 1px;
   background: rgba(255, 255, 255, 0.15);
-  margin: 4px 0;
+  margin: 2px 0;
 }
 
 .restartBtn {
-  margin-top: 8px;
+  margin-top: 6px;
   padding: 12px 32px;
   font-family: 'Courier New', monospace;
   font-size: 1rem;
@@ -187,7 +258,104 @@
 
 .medal {
   font-size: 2.2rem;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
+}
+
+/* ── Leaderboard ── */
+
+.leaderboardPanel {
+  background: rgba(0, 0, 0, 0.9);
+  border: 3px solid #FFC107;
+  border-radius: 16px;
+  padding: 24px 20px;
+  max-width: 360px;
+  width: 90%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.lbTitle {
+  font-family: 'Courier New', monospace;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #FFC107;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.lbCoins {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #FFD54F;
+}
+
+.lbList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.lbRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+}
+
+.lbRank {
+  font-size: 1rem;
+  width: 28px;
+  text-align: center;
+}
+
+.lbScore {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #fff;
+  flex: 1;
+}
+
+.lbLevel {
+  font-size: 0.7rem;
+  color: #FFE082;
+}
+
+.lbDate {
+  font-size: 0.6rem;
+  color: #888;
+}
+
+.lbEmpty {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: #666;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.backBtn {
+  margin-top: 4px;
+  padding: 10px 28px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(180deg, #555, #333);
+  border: 2px solid #222;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.backBtn:active {
+  transform: scale(0.94);
 }
 
 /* ── Responsive ── */
