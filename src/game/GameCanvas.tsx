@@ -4,7 +4,7 @@ import { render } from './renderer.ts'
 import { useFlappyBird } from './useFlappyBird.ts'
 
 interface Props {
-  readonly onScoreChange: (score: number, best: number) => void
+  readonly onScoreChange: (score: number, best: number, level: number) => void
   readonly onPhaseChange: (phase: string) => void
 }
 
@@ -25,11 +25,14 @@ export default function GameCanvas({ onScoreChange, onPhaseChange }: Props) {
 
     if (s.score !== prevScoreRef.current || s.bestScore !== prevScoreRef.current) {
       prevScoreRef.current = s.score
-      onScoreChange(s.score, s.bestScore)
+      onScoreChange(s.score, s.bestScore, s.level)
     }
     if (s.phase !== prevPhaseRef.current) {
       prevPhaseRef.current = s.phase
       onPhaseChange(s.phase)
+      if (s.phase === 'dead') {
+        onScoreChange(s.score, s.bestScore, s.level)
+      }
     }
 
     requestAnimationFrame(draw)
@@ -40,7 +43,6 @@ export default function GameCanvas({ onScoreChange, onPhaseChange }: Props) {
     return () => cancelAnimationFrame(animId)
   }, [draw])
 
-  // Keyboard input
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.code === 'Space' || e.code === 'ArrowUp') {
@@ -52,7 +54,6 @@ export default function GameCanvas({ onScoreChange, onPhaseChange }: Props) {
     return () => window.removeEventListener('keydown', handleKey)
   }, [flap])
 
-  // Touch / click input
   const handleInteraction = useCallback((e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault()
     flap()

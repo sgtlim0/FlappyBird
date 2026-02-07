@@ -57,6 +57,32 @@
   text-shadow: 1px 1px 0 #553300;
 }
 
+.features {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.featureTag {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 4px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.levelTag {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: #FFE082;
+  margin-bottom: 4px;
+  text-shadow: 1px 1px 0 #000;
+}
+
 .tapHint {
   font-family: 'Courier New', monospace;
   font-size: 0.9rem;

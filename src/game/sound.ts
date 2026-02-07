@@ -48,20 +48,21 @@ export function playDie() {
   setTimeout(() => playTone(100, 0.4, 'sawtooth', 0.12), 300)
 }
 
-export function playSwoosh() {
-  const c = getCtx()
-  const bufferSize = c.sampleRate * 0.1
-  const buffer = c.createBuffer(1, bufferSize, c.sampleRate)
-  const data = buffer.getChannelData(0)
-  for (let i = 0; i < bufferSize; i++) {
-    data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize)
-  }
-  const source = c.createBufferSource()
-  const gain = c.createGain()
-  source.buffer = buffer
-  gain.gain.setValueAtTime(0.08, c.currentTime)
-  gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.1)
-  source.connect(gain)
-  gain.connect(c.destination)
-  source.start()
+export function playPowerUp() {
+  playTone(500, 0.08, 'sine', 0.15)
+  setTimeout(() => playTone(700, 0.08, 'sine', 0.15), 60)
+  setTimeout(() => playTone(900, 0.08, 'sine', 0.15), 120)
+  setTimeout(() => playTone(1200, 0.15, 'sine', 0.12), 180)
+}
+
+export function playLevelUp() {
+  playTone(400, 0.1, 'square', 0.1)
+  setTimeout(() => playTone(500, 0.1, 'square', 0.1), 100)
+  setTimeout(() => playTone(600, 0.1, 'square', 0.1), 200)
+  setTimeout(() => playTone(800, 0.2, 'square', 0.12), 300)
+}
+
+export function playShieldHit() {
+  playTone(300, 0.15, 'sine', 0.12)
+  setTimeout(() => playTone(500, 0.1, 'sine', 0.1), 80)
 }
