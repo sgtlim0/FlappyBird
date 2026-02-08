@@ -25,15 +25,15 @@ function saveBestScore(score: number) {
 // ── Difficulty scaling ──
 
 function getLevel(score: number): number {
-  if (score >= 50) return 10
-  if (score >= 40) return 9
-  if (score >= 33) return 8
-  if (score >= 27) return 7
-  if (score >= 22) return 6
-  if (score >= 17) return 5
-  if (score >= 13) return 4
-  if (score >= 9) return 3
-  if (score >= 5) return 2
+  if (score >= 60) return 10
+  if (score >= 50) return 9
+  if (score >= 42) return 8
+  if (score >= 35) return 7
+  if (score >= 28) return 6
+  if (score >= 22) return 5
+  if (score >= 16) return 4
+  if (score >= 11) return 3
+  if (score >= 7) return 2
   return 1
 }
 
